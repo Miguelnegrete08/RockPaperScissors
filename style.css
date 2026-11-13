@@ -1,0 +1,22 @@
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.containerText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+}
+
+button{
+    height: 50px;
+    width: 100px;
+    border-radius: 10px;
+}
+
