@@ -4,16 +4,6 @@ let humanScore = 0;
 let computerScore = 0;
 
 
-
-function getHumanChoice(){
-    btns.forEach(function(btn){
-    btn.addEventListener("click", function(e){
-        let choice = btn.textContent;
-        return choice;
-    })
-})
-}
-
 function getComputerChoice(){
     let choice = Math.floor(Math.random()*3)+1
 
@@ -29,37 +19,47 @@ function getComputerChoice(){
 }
 
 
-// function playRound(computerChoice, humanChoice){
-//     humanChoice = humanChoice.toLowerCase();
+function playRound(computerChoice, humanChoice){
 
-//     if(humanChoice === "rock" && computerChoice === "scissors"){
-//         humanScore += 1
-//     }
-//     else if(humanChoice === "paper" && computerChoice === "rock"){
-//         humanScore += 1
-//     }
-//     else if(humanChoice === "scissors" && computerChoice === "paper"){
-//         humanScore += 1
-//     }
-//     else if(computerChoice === "rock" && humanChoice === "scissors"){
-//         computerScore += 1
-//     }
-//     else if(computerChoice === "paper" && humanChoice === "rock"){
-//         computerScore += 1
-//     }
-//     else if(computerChoice === "scissors" && humanChoice === "paper"){
-//         computerScore += 1
-//     }
-//     else{
-//         computerScore += 0
-//         humanScore += 0
-//     }
-//     console.log("human: " + humanChoice)
-//     console.log("pc: " + computerChoice)
-//     console.log("human score: " + humanScore)
-//     console.log("computer score: " + computerScore)
+    if(humanChoice === "rock" && computerChoice === "scissors"){
+        humanScore += 1
+    }
+    else if(humanChoice === "paper" && computerChoice === "rock"){
+        humanScore += 1
+    }
+    else if(humanChoice === "scissors" && computerChoice === "paper"){
+        humanScore += 1
+    }
+    else if(computerChoice === "rock" && humanChoice === "scissors"){
+        computerScore += 1
+    }
+    else if(computerChoice === "paper" && humanChoice === "rock"){
+        computerScore += 1
+    }
+    else if(computerChoice === "scissors" && humanChoice === "paper"){
+        computerScore += 1
+    }
+    else{
+        computerScore += 0
+        humanScore += 0
+    }
+    console.log("human: " + humanChoice)
+    console.log("pc: " + computerChoice)
+    console.log("human score: " + humanScore)
+    console.log("computer score: " + computerScore)
 
-// }
+}
+
+btns.forEach(function(btn){
+    btn.addEventListener("click", function(e){
+        let choice = btn.textContent;
+        let computerChoice = getComputerChoice();
+        playRound(computerChoice, choice);
+    })
+})
+
+
+
 
 
 
