@@ -48,7 +48,7 @@ function playRound(computerChoice, humanChoice){
     }
 };
 
-function playGame(){
+function getWinner(){
     if(humanScore == 5 && humanScore > computerScore){
         const humanWins = document.createElement("div");
         humanWins.textContent = "Human wins!";
@@ -61,32 +61,43 @@ function playGame(){
     }
 }
 
-var handleClick = function(e){
-    let choice = e.target.textContent.toLowerCase();
-    let computerChoice = getComputerChoice();
+function getScores(choice, computerChoice){
     const result = document.createElement("div");
     const score =  document.createElement("div");
     result.textContent = `human ${choice} || PC ${computerChoice}`;
     score.textContent = `Score= ${humanScore} || ${computerScore}`;
     containerText.append(result, score);
-    if(humanScore == 5 || computerScore == 5){
+}
+
+function playAgain() {
+  const button = document.createElement("button");
+  button.textContent = "Play Again!";
+  containerText.append(button);
+  button.addEventListener("click", (e) => {
+    humanScore = 0;
+    computerScore = 0;
+    containerText.textContent = "";
+    listener();
+  });
+};
+
+
+var handleClick = function(e){
+    let choice = e.target.textContent.toLowerCase();
+    let computerChoice = getComputerChoice();
+    
+    playRound(computerChoice, choice);
+
+    if(humanScore === 5 || computerScore === 5){
         containerText.textContent = "";
-        playGame();
-        containerText.append(result, score);
+        getWinner();
+        getScores(choice, computerChoice)
         btns.forEach(function(btn){
             btn.removeEventListener("click", handleClick);
         });
-        const button = document.createElement("button")
-        button.textContent = "Play Again!"
-        containerText.append(button)
-        button.addEventListener("click", (e)=>{
-            humanScore = 0;
-            computerScore = 0;
-            containerText.textContent = "";
-            listener();
-        });
+        playAgain();
     }else{
-        playRound(computerChoice, choice);
+        getScores(choice, computerChoice)
     };
 };
 
